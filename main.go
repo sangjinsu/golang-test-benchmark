@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func Square(x int) int {
 	return x * x
 }
@@ -35,7 +33,7 @@ func FiboRecursive(n int) int {
 	return FiboRecursive(n-1) + FiboRecursive(n-2)
 }
 
-func Dfs1(v int, visited []bool, graph [][]int) {
+func Dfs(v int, visited []bool, graph [][]int) {
 	stack := []int{v}
 	for len(stack) > 0 {
 		node := stack[len(stack)-1]
@@ -50,19 +48,12 @@ func Dfs1(v int, visited []bool, graph [][]int) {
 	}
 }
 
-func Dfs2(v int, visited []bool, graph [][]int) {
+func DFSRecursive(v int, visited []bool, graph [][]int) {
 	visited[v] = true
 	// fmt.Println(v)
 	for _, node := range graph[v] {
 		if visited[node] == false {
-			Dfs2(node, visited, graph)
+			DFSRecursive(node, visited, graph)
 		}
 	}
-}
-
-func main() {
-	fmt.Printf("9 * 9 = %d\n", Square(9))
-
-	fmt.Println(Fibo(5))
-	fmt.Println(FiboRecursive(5))
 }

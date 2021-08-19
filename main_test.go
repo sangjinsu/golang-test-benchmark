@@ -26,13 +26,13 @@ func TestSquare_third(t *testing.T) {
 	}
 }
 
-func BenchmarkFibo1(b *testing.B) {
+func BenchmarkFibo(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Fibo(5)
 	}
 }
 
-func BenchmarkFibo2(b *testing.B) {
+func BenchmarkFiboRecursive(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		FiboRecursive(5)
 	}
@@ -56,14 +56,14 @@ var graph = [][]int{
 func BenchmarkDFS(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		visited := make([]bool, n+1)
-		Dfs1(1, visited, graph)
+		Dfs(1, visited, graph)
 	}
 }
 
 func BenchmarkDFSRecursive(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		visited := make([]bool, n+1)
-		Dfs2(1, visited, graph)
+		DFSRecursive(1, visited, graph)
 	}
 }
 
