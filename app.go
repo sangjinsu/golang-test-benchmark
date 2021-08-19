@@ -2,11 +2,11 @@ package main
 
 import "fmt"
 
-func square(x int) int {
+func Square(x int) int {
 	return x * x
 }
 
-func fibo(n int) int {
+func Fibo(n int) int {
 	if n < 0 {
 		return 0
 	}
@@ -23,7 +23,7 @@ func fibo(n int) int {
 	return b
 }
 
-func fiboRecursive(n int) int {
+func FiboRecursive(n int) int {
 	if n < 0 {
 		return 0
 	}
@@ -32,12 +32,37 @@ func fiboRecursive(n int) int {
 		return n
 	}
 
-	return fiboRecursive(n -1) + fiboRecursive( n - 2)
+	return FiboRecursive(n-1) + FiboRecursive(n-2)
+}
+
+func Dfs1(v int, visited []bool, graph [][]int) {
+	stack := []int{v}
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		visited[node] = true
+		// fmt.Println(node)
+		for _, nd := range graph[node] {
+			if visited[nd] == false {
+				stack = append(stack, nd)
+			}
+		}
+	}
+}
+
+func Dfs2(v int, visited []bool, graph [][]int) {
+	visited[v] = true
+	// fmt.Println(v)
+	for _, node := range graph[v] {
+		if visited[node] == false {
+			Dfs2(node, visited, graph)
+		}
+	}
 }
 
 func main() {
-	fmt.Printf("9 * 9 = %d\n", square(9))
+	fmt.Printf("9 * 9 = %d\n", Square(9))
 
-	fmt.Println(fibo(5))
-	fmt.Println(fiboRecursive(5))
+	fmt.Println(Fibo(5))
+	fmt.Println(FiboRecursive(5))
 }
